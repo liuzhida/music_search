@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>音乐搜索</title>
+	<script src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/lib/underscore-1.1.6.js"></script>
+	<script type="text/javascript" src="static/lib/backbone.js"></script>
+	<script type="text/javascript" src="static/js/main.js"></script>
+	<style type="text/css">
+           *{margin: 0px; padding: 0px; font: 12px/18px "Lucida Grande", Verdana, 'Microsoft Yahei',sans-serif;}
+            .wil-wrapper a{
+                text-decoration: none;
+            }
+            .wil-wrapper{
+                width: 800px;
+                margin: auto;
+            }
+            .wil-wrapper h1.title{
+                font-size: 16px;
+                font-weight: bold;
+                margin-top: 60px;
+                margin-bottom: 12px;
+            }
+            .wil-wrapper h1.title span{
+                color: #646464;
+                margin-left: 10px;
+            }
+            .wil-wrapper .wil-form{
+                margin-top: 10px;
+            }
+            .wil-wrapper  .wil-url{
+                width: 300px;
+                height: 16px;
+                border: #6A0 solid 1px;
+                font-size: 16px;
+                padding: 7px;
+            }
+            .wil-wrapper .wil-go-button{
+                width: 85px;
+                height: 30px;
+                background-color: #6A0;
+                border: none;
+                border-radius: 3px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: 7px;
+                cursor: pointer;
+            }
+            .wil-wrapper .wil-tip{
+                color: #000;
+                font-size: 13px;
+                margin-top: 8px;
+                text-align: left;
+            }
+            .wil-wrapper .error-tip{
+                color: #FF6923;
+                margin-top: 7px;
+                position: absolute;
+                display: none;
+            }
+            .wil-wrapper .install-player{
+                padding-left: 15px;
+                color: #2d62ca;
+            }
+            
+            .wil-wrapper .content{
+                width: 400px;
+                height: 300px;
+                margin: 45px auto 0 auto;
+            }
+            .wil-wrapper h3{
+                font-size: 15px;
+                font-weight: bold;
+                margin-bottom: 13px;
+            }
+
+            .wil-list-title{
+                width:150px;
+                display:block;
+                float:left;
+            }
+            .wil-wrapper ul{
+                display:inline-block;
+                margin:0px;
+                padding:0px;
+                border-bottom:1px #eee solid;
+            }
+            .wil-wrapper li{
+                float:left;
+                list-style-type:none;
+                display:block;
+                margin:0px;
+                padding:10px;
+                
+            }
+            .wil-wrapper ul:hover{
+                background-color:#fcfcfc;
+            }
+            .wil-list-title{
+                width:200px;
+                overflow: hidden;
+            }
+            .wil-list-download{
+                width:200px;
+            }
+            .wil-list-time{
+                width:150px;
+            }
+            #wil-list-head{
+                background-color:#f0f0f0;
+            }
+            .wil-wrapper a{
+                text-decoration: none;
+                color:#aaa;
+            }
+            #wil-infos{
+                float:right;
+                margin-top:50px;
+                text-align: right;
+            }
+            #wil-ways{
+                float: right;
+                font-size: 12px;
+                color:#666;
+            }
+            #wil-ways a{
+                font-size:12px;
+            }
+	</style>
+</head>
+<body>
+
+<div align="center">
+    <img src="static/images/music_logo.png" alt="" >
+</div>
+<div align="center" class="wil-wrapper">
+    {{ url }} Not Found
+</div>
+</body>

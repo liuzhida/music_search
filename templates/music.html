@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://apps.wandoujia.com/search?key=%E9%85%B7%E6%88%91&pos=homepage -->
+<html lang="zh-CN"><head _wxhkphogpkobbkjccgfifhfjlahnoocnan_="shake_1.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="static/js/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>搜索</title>    <link href="http://s.wdjimg.com/style/min/g=navc/pack%7Cnavc/list%7C091313.css" rel="stylesheet">
+    <script>
+var Timer = (function(){
+    var _beaconImg = '/beacon/blank.gif',
+        _rate = parseFloat('0.5'),
+        _now = + new Date(),
+        _docReady = 0,
+        // 如果接收到的 loaded 为0，则页面加载时间超过5秒
+        _loaded = 0,
+        _staticVersion = '091313',
+        _storageKey = 'static-ver-' + location.pathname;
+        
+    return {
+        record : function(param){
+            (new Image()).src = _beaconImg + '?' + param;
+        },
+        sendAll : function(){
+            var _items = {},
+                param = '',
+                perf = window.performance;
+                
+            if(perf){
+                var _timing = perf.timing;
+                _items = {
+                    net : _timing.responseEnd - _timing.fetchStart,
+                    loaded : _timing.loadEventEnd - _timing.responseEnd,
+                    whole : _timing.loadEventEnd - _timing.navigationStart,
+                    dom : _timing.domComplete - _timing.responseEnd
+                };
+            }else{
+                _items = {
+                    docready : _docReady,
+                    loaded : _loaded
+                };
+            }
+            for(var x in _items){
+                param = param + x + '=' + _items[x] + '&';
+            }
+            param = param.substr(0, param.length - 1);
+            this.record(param);
+        },
+        init : function () {
+            if(Math.random() > _rate){
+                return;
+            }
+            var sended = 0,
+                send = function () {
+                    if(sended || ( localStorage && localStorage.getItem(_storageKey) == _staticVersion)){
+                        return;
+                    }
+                    Timer.sendAll();
+                    localStorage.setItem(_storageKey, _staticVersion);
+                    sended = 1;
+                };
+                
+            
+            document.addEventListener('DOMContentLoaded', function(){
+                _docReady = + new Date - _now;
+            });
+            
+            window.addEventListener('load', function(){
+                _loaded = + new Date - _now;
+                setTimeout(function(){
+                    send();
+                },15);
+            });
+            setTimeout(function(){
+                send();
+            }, 15000);
+        }
+    };
+})();
+Timer.init();
+</script><style type="text/css"></style>
+</head>
+<body>
+<div class="search-box">
+    <form action="http://music.wandoujia.com/search" method="get" class="search-form">
+    <input autocomplete="off" class="search-ipt" name="word" placeholder="独立应用数: 291953" value="{{ word }}">
+    <a class="search-btn"><s class="s-icon"></s>搜索</a>
+    </form>
+</div>
+
+<div class="frid-16 container">
+    <div class="frid-12">
+        <h4 class="box-title">
+            搜索
+            <span class="meta">共找到 66 款应用</span>
+        </h4>
+
+        <div class="box clearfix">
+
+                        
+                                    <ol class="result-list">
+                                        <li><a class="app-img" href="http://apps.wandoujia.com/detail?pn=cn.kuwo.player&from=homepage&kw=%E9%85%B7%E6%88%91&pos=search/1/0" pos="search/1/0/direct" q="%E9%85%B7%E6%88%91" from="homepage"> <img src="static/images/kuwo.png" alt="酷我音乐" width="48"> </a><div class="app-info"><h3 class="name"><a href="http://apps.wandoujia.com/detail?pn=cn.kuwo.player&from=homepage&kw=%E9%85%B7%E6%88%91&pos=search/1/0">酷我音乐</a></h3><span class="tags"><div class="label-wrapper"><div class="tag-item search-label" data-label-id="0">官方版</div><div class="tag-bubble" data-label-id="0" style="display: none;"><div class="tag-text">此应用已通过豌豆荚检测为官方原版，请放心安装。</div></div></div></span><p class="desc">在酷我音乐中找到12首关于<em>{{ word }}</em>的歌曲<sup>beta</sup></p><div class="operate"><a class="medium-green-btn btn-download" pos="search/1/0" q="%E9%85%B7%E6%88%91" name="酷我音乐2012(音乐播放器) 4.2.1.4 (v4214)" url="http://pmt.wdjcdn.com/static/uploads/a/182/cn.kuwo.player.1346923332153.apk" pid="32" appid="1542780" hasgamecontent="0">安&nbsp;装</a><span class="meta"> <span>5.34 MB</span> <span>413万次下载</span> </span></div></div>
+<div id = "music-div" class="music-box">
+<table id="music-wrapper" >
+  <tbody>
+  </tbody>
+</table>
+</div>
+</li>
+        </div>
+
+        <div class="weibo-tip meta">
+            <span class="txt">如果没有您希望的结果，请通过新浪微博<a href="javascript:;" id="share-weibo">告诉豌豆们</a></span>
+        </div>
+
+    </div>
+
+    <div class="frid-4">
+<ul class="block-list " data-row="">
+</div>
+
+
+<script type="text/template" id="music">
+  <tr>
+      <td class="music-name" title="{0}">{0}</td>
+      <td class="music-artist" title="{1}">{1}</td>
+    <td class="music-album" title="{2}" >{2}</td>
+      <td class="music-download"><a class = "downBtn" onclick="{3} return false;" href="#" rel = "download">下载</a></td>
+  </tr>
+</script>
+<script>
+function format(s, arg0) {
+    var args = arguments;
+    return s.replace(/\{(\d+)\}/ig, function(a, b) {
+        var ret = args[(b | 0) + 1];
+        return ret == null ? '' : ret;
+    });
+}
+    $("#1").hide();
+    $.ajax({
+        type: 'get',
+        url:  'http://music.wandoujia.com/api?jsonp=?',
+        dataType: 'jsonp',
+        data: {word:"{{word}}"},
+    }).done(function(resp) {
+//    	resp = JSON.parse(resp);
+        if (typeof(resp) == "string"){
+        $('#music-div').hide();
+        }
+    	else {
+        var data = resp.result;
+    	var item;
+    	for (var i = 0, len = data.length; i < len; i++) {
+       		item = data[i];
+		var row = format( $('#music').html(), item.songname, item.singer, item.album, item.url );
+        	$('#music-wrapper tbody').append(row); 
+        }
+        $('#music-wrapper').show();
+        }
+    });
+    //.fail(function() {
+       // $('music-div').hide();}
+    //);
+function commdown(rid,md5str,songName,art,size,album){
+console.log('commdown');
+    var img1 = new Image(); 
+    img1.src="http://webstat.kuwo.cn/logtj/comm/commjstj/webmusic/down_kuwoplaypv_psum_hzwdx.jpg?"+getTimeParam();
+    var mp3url="http://play.kuwo.cn/play/st/GetMusicPath?src=91&mid="+rid+"&ext=mp3&key="+md5str;
+    var song={
+    "url": mp3url,
+    "title": songName,
+    "artist": art,
+    "album": album,
+    "format" : "mp3",
+    "from": "kuwo"
+    };
+    //top.wd_music_download([song]);
+    window.externalCall('portal','-musicurlarray',JSON.stringify([song]));
+} 
+    function getTimeParam(){
+        var number = Math.random(); 
+        number = number * 1000000000;
+        number = Math.ceil(number);
+        return 't=' + number;
+    }
+</script>
+<style>
+@import "http://s.wdjimg.com/style/min/g=navc/pack|navc/list|090502.css";
+
+/*body {
+  padding: 50px; 
+}*/
+.desc sup {
+  position:relative;
+  top: -3px;
+  left: 3px;
+  color: #999;
+  font-size: 9px;
+}
+.music-box {
+  border: #ddd solid 1px;
+  height: 150px;
+  overflow: auto;
+  margin:10px  105px 0 58px;
+}
+.music-box table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout:fixed;
+}
+
+.music-box table tr:hover{
+    background:#F5F5F5;
+}
+
+.music-box td.music-name {
+    color:#444;
+    font-weight: bold;
+  
+}
+.music-artist {
+  width: 120px;
+}
+.music-album {
+  width: 120px; 
+}
+.music-download {
+  width: 40px;
+}
+.music-box td {
+  color: #777;
+  line-height: 30px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align: left;
+  border-bottom: #eee solid 1px; 
+  vertical-align: middle;
+  padding:0 10px;
+  
+}
+</style>
